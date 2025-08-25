@@ -11,7 +11,7 @@ import ComposableArchitecture
 @Reducer
 struct CounterFeature {
     @ObservableState
-    struct State {
+    struct State: Equatable {
         var count = 0
         var fact: String?
         var isLoading = false
@@ -30,6 +30,9 @@ struct CounterFeature {
     enum CancelID {
         case timer
     }
+    
+    @Dependency(\.continuousClock) var clock
+    @Dependency(\.numberFact) var numberFact
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -49,10 +52,8 @@ struct CounterFeature {
                 state.isLoading = true
                 return .run { [count = state.count] send in
                     do {
-                        let (data, _) = try await URLSession.shared
-                            .data(from: URL(string: "http://numbersapi.com/\(count)")!)
-                        let fact = String(decoding: data, as: UTF8.self)
-                        await send(.factResponse(fact))
+                        let response = try await numberFact.fetch(count)
+                        await send(.factResponse(response))
                     } catch {
                         print(error)
                     }
@@ -71,8 +72,7 @@ struct CounterFeature {
                 state.isTimerRunning.toggle()
                 if state.isTimerRunning {
                     return .run { send in
-                        while true {
-                            try await Task.sleep(for: .seconds(1))
+                        for await _ in self.clock.timer(interval: .seconds(1)) {
                             await send(.timerTicked)
                         }
                     }

@@ -14,6 +14,9 @@ let project = Project(
                         "UIColorName": "",
                         "UIImageName": "",
                     ],
+                    "NSAppTransportSecurity": [
+                        "NSAllowsArbitraryLoads": true,
+                    ]
                 ]
             ),
             sources: ["TCA-Modularisation-Tuist/Sources/**"],

@@ -26,4 +26,9 @@ jobs:
       - name: Check Xcode version
         run: /usr/bin/xcodebuild -version
       - run: tuist install
-      - run: tuist build
+      - run: tuist generate --no-open
+      - run: |
+          xcodebuild test \
+          -workspace TCA-Modularisation-Tuist.xcworkspace \
+          -scheme TCA-Modularisation-Tuist-Workspace \
+          -destination "platform=iOS Simulator,name=iPhone 16"

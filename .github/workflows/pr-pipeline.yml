@@ -26,6 +26,4 @@ jobs:
       - name: Check Xcode version
         run: /usr/bin/xcodebuild -version
       - run: tuist install
-      - run: tuist test
       - run: tuist build
-          

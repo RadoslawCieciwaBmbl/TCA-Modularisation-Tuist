@@ -1,0 +1,23 @@
+name: PR Pipeline
+run-name: ${{ github.actor }} runs main pipeline 🚀
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+jobs:
+  PR-Pipeline:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+        with:
+          version: 3.2.0
+          install: true
+          install_args: "tuist"
+          cache: true
+          log_level: debug
+          # github_token: ${{ secrets.GITHUB_TOKEN }} # [default: ${{ github.token }}] GitHub token for API authentication
+      - run: tuist test

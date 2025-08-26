@@ -11,6 +11,8 @@ on:
 jobs:
   PR-Pipeline:
     runs-on: macos-15
+    env:
+      TUIST_TEST_PLATFORM: iOS
     steps:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
@@ -26,5 +28,4 @@ jobs:
       - run: tuist install
       - run: tuist test
       - run: tuist build
-        with:
-          TUIST_TEST_PLATFORM: iOS
+          

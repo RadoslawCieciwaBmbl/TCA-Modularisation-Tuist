@@ -21,5 +21,7 @@ jobs:
           cache: true
           log_level: debug
           # github_token: ${{ secrets.GITHUB_TOKEN }} # [default: ${{ github.token }}] GitHub token for API authentication
+      - name: check Xcode SDKs
+        run: /usr/bin/xcodebuild -showsdks
       - run: tuist install
       - run: tuist test

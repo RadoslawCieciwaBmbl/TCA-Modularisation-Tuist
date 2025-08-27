@@ -42,4 +42,4 @@ jobs:
           set -o pipefail && NSUnbufferedIO=YES xcodebuild test \
           -workspace TCA-Modularisation-Tuist.xcworkspace \
           -scheme TCA-Modularisation-Tuist \
-          -destination "platform=iOS Simulator,name=iPhone 16" 2>&1 | xcbeautify --renderer github-actions
+          -destination "platform=iOS Simulator,name=iPhone 16,OS=18.4" 2>&1 | xcbeautify --renderer github-actions

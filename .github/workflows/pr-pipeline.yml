@@ -36,10 +36,10 @@ jobs:
         run: |
           xcodebuild -showdestinations \
           -workspace TCA-Modularisation-Tuist.xcworkspace \
-          -scheme TCA-Modularisation-Tuist-Workspace
+          -scheme TCA-Modularisation-Tuist
       - name: Run Tests
         run: |
           set -o pipefail && NSUnbufferedIO=YES xcodebuild test \
           -workspace TCA-Modularisation-Tuist.xcworkspace \
-          -scheme TCA-Modularisation-Tuist-Workspace \
+          -scheme TCA-Modularisation-Tuist \
           -destination "platform=iOS Simulator,name=iPhone 16" 2>&1 | xcbeautify --renderer github-actions

@@ -17,7 +17,7 @@ struct CounterFeature {
         var isLoading = false
         var isTimerRunning = false
     }
-    
+
     enum Action {
         case decrementButtonTapped
         case incrementButtonTapped
@@ -30,7 +30,7 @@ struct CounterFeature {
     enum CancelID {
         case timer
     }
-    
+
     @Dependency(\.continuousClock) var clock
     @Dependency(\.numberFact) var numberFact
 
@@ -41,12 +41,12 @@ struct CounterFeature {
                 state.count -= 1
                 state.fact = nil
                 return .none
-                
+
             case .incrementButtonTapped:
                 state.count += 1
                 state.fact = nil
                 return .none
-                
+
             case .factButtonTapped:
                 state.fact = nil
                 state.isLoading = true
@@ -62,12 +62,12 @@ struct CounterFeature {
                 state.fact = fact
                 state.isLoading = false
                 return .none
-                
+
             case .timerTicked:
                 state.count += 1
                 state.fact = nil
                 return .none
-                
+
             case .timerTurnToggled:
                 state.isTimerRunning.toggle()
                 if state.isTimerRunning {

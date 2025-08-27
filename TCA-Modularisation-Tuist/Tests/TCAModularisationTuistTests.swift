@@ -1,4 +1,3 @@
-
 @testable import TCA_Modularisation_Tuist
 import ComposableArchitecture
 import Testing
@@ -10,7 +9,7 @@ struct CounterFeatureTests {
         let store = TestStore(initialState: CounterFeature.State()) {
             CounterFeature()
         }
-        
+
         await store.send(.incrementButtonTapped) { state in
             state.count = 1
         }
@@ -21,7 +20,7 @@ struct CounterFeatureTests {
             state.count = 1
         }
     }
-    
+
     @Test
     func testTimerSideEffect() async {
         let clock = TestClock()
@@ -31,14 +30,14 @@ struct CounterFeatureTests {
             $0.continuousClock = clock
         }
 
-        await store.send(.timerTurnToggled){
+        await store.send(.timerTurnToggled) {
             $0.isTimerRunning = true
         }
         await clock.advance(by: .seconds(1))
         await store.receive(\.timerTicked) {
             $0.count = 1
         }
-        await store.send(.timerTurnToggled){
+        await store.send(.timerTurnToggled) {
             $0.isTimerRunning = false
         }
     }

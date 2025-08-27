@@ -15,7 +15,6 @@ jobs:
     runs-on: macos-15
     env:
       TUIST_TEST_PLATFORM: iOS
-
     steps:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
@@ -30,16 +29,16 @@ jobs:
         run: /usr/bin/xcodebuild -version
       - run: tuist install
       - run: tuist generate --no-open
-      - name: Print SDKs, runtimes and devices
-        run: |
-          xcrun simctl list runtimes
-          xcrun simctl list devices
-          xcodebuild -showsdks
-      - name: Print destinations
-        run: |
-          xcodebuild -showdestinations \
-          -workspace TCA-Modularisation-Tuist.xcworkspace \
-          -scheme TCA-Modularisation-Tuist
+      # - name: Print SDKs, runtimes and devices
+      #   run: |
+      #     xcrun simctl list runtimes
+      #     xcrun simctl list devices
+      #     xcodebuild -showsdks
+      # - name: Print destinations
+      #   run: |
+      #     xcodebuild -showdestinations \
+      #     -workspace TCA-Modularisation-Tuist.xcworkspace \
+      #     -scheme TCA-Modularisation-Tuist
       - name: Run Tests
         run: |
           set -o pipefail && NSUnbufferedIO=YES xcodebuild test \

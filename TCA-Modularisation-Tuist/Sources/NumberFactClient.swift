@@ -10,7 +10,7 @@ extension NumberFactClient: DependencyKey {
         fetch: { number in
             let (data, _) = try await URLSession.shared
                 .data(from: URL(string: "http://numbersapi.com/\(number)")!)
-            return String(bytes: data, encoding: .utf8)
+            return String(bytes: data, encoding: .utf8) ?? ""
         }
     )
 }

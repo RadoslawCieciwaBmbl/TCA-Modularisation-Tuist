@@ -8,6 +8,7 @@ let project = Project(
             destinations: .iOS,
             product: .app,
             bundleId: "io.tuist.TCA-Modularisation-Tuist",
+            deploymentTargets: .iOS("18.5"),
             infoPlist: .extendingDefault(
                 with: [
                     "UILaunchScreen": [
@@ -30,6 +31,7 @@ let project = Project(
             destinations: .iOS,
             product: .unitTests,
             bundleId: "io.tuist.TCA-Modularisation-TuistTests",
+            deploymentTargets: .iOS("18.5"),
             infoPlist: .default,
             sources: ["TCA-Modularisation-Tuist/Tests/**"],
             resources: [],

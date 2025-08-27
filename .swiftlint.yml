@@ -1,0 +1,4 @@
+excluded: # Takes precedence over `included`.
+    - Tuist
+    - Tuist.swift
+    - Project.swift

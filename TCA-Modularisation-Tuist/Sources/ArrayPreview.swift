@@ -10,11 +10,11 @@ import SwiftUI
 
 final class ViewModel: ObservableObject {
     @Published var array: [String] = []
-    
+
     init(array: [String]) {
         self.array = array
     }
-    
+
     func randomise() {
         array = Array(0..<array.count).map { _ in UUID().uuidString }
     }
@@ -22,7 +22,7 @@ final class ViewModel: ObservableObject {
 
 struct ArrayView: View {
     @ObservedObject var viewModel: ViewModel
-    
+
     var body: some View {
         List {
             ForEach(Array(viewModel.array.enumerated()), id: \.offset) { index, item in

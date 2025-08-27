@@ -27,7 +27,18 @@ jobs:
         run: /usr/bin/xcodebuild -version
       - run: tuist install
       - run: tuist generate --no-open
-      - run: |
+      - name: Print SDKs, runtimes and devices
+        run: |
+          xcrun simctl list runtimes
+          xcrun simctl list devices
+          xcodebuild -showsdks
+      - name: Print destinations
+        run: |
+          xcodebuild -showdestinations \
+          -workspace TCA-Modularisation-Tuist.xcworkspace \
+          -scheme TCA-Modularisation-Tuist-Workspace
+      - name: Run Tests
+        run: |
           set -o pipefail && NSUnbufferedIO=YES xcodebuild test \
           -workspace TCA-Modularisation-Tuist.xcworkspace \
           -scheme TCA-Modularisation-Tuist-Workspace \

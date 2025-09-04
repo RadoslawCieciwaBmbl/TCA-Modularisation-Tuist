@@ -16,8 +16,8 @@ jobs:
     env:
       TUIST_TEST_PLATFORM: iOS
     steps:
-      - uses: actions/checkout@v4
-      - uses: jdx/mise-action@v2
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # @v4.3.0 https://github.com/actions/checkout
+      - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2 https://github.com/jdx/mise-action
         with:
           # version: 3.2.0
           install: true

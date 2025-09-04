@@ -27,7 +27,7 @@ jobs:
           # github_token: ${{ secrets.GITHUB_TOKEN }} # [default: ${{ github.token }}] GitHub token for API authentication
       - name: Check Xcode version
         run: /usr/bin/xcodebuild -version
-      - name: Run Build
+      - name: Tests
         run: scripts/ci/test.sh
 
       # - run: tuist install

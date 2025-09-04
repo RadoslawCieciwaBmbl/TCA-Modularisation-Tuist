@@ -15,10 +15,9 @@ jobs:
     runs-on: macos-15
     env:
       TUIST_TEST_PLATFORM: iOS
-
     steps:
-      - uses: actions/checkout@v4
-      - uses: jdx/mise-action@v2
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # @v4.3.0 https://github.com/actions/checkout
+      - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2 https://github.com/jdx/mise-action
         with:
           # version: 3.2.0
           install: true
@@ -28,21 +27,24 @@ jobs:
           # github_token: ${{ secrets.GITHUB_TOKEN }} # [default: ${{ github.token }}] GitHub token for API authentication
       - name: Check Xcode version
         run: /usr/bin/xcodebuild -version
-      - run: tuist install
-      - run: tuist generate --no-open
-      - name: Print SDKs, runtimes and devices
-        run: |
-          xcrun simctl list runtimes
-          xcrun simctl list devices
-          xcodebuild -showsdks
-      - name: Print destinations
-        run: |
-          xcodebuild -showdestinations \
-          -workspace TCA-Modularisation-Tuist.xcworkspace \
-          -scheme TCA-Modularisation-Tuist
-      - name: Run Tests
-        run: |
-          set -o pipefail && NSUnbufferedIO=YES xcodebuild test \
-          -workspace TCA-Modularisation-Tuist.xcworkspace \
-          -scheme TCA-Modularisation-Tuist \
-          -destination "platform=iOS Simulator,name=iPhone 16,OS=18.5" 2>&1 | xcbeautify --renderer github-actions
+      - name: Tests
+        run: scripts/ci/test.sh
+
+      # - run: tuist install
+      # - run: tuist generate --no-open
+      # - name: Print SDKs, runtimes and devices
+      #   run: |
+      #     xcrun simctl list runtimes
+      #     xcrun simctl list devices
+      #     xcodebuild -showsdks
+      # - name: Print destinations
+      #   run: |
+      #     xcodebuild -showdestinations \
+      #     -workspace TCA-Modularisation-Tuist.xcworkspace \
+      #     -scheme TCA-Modularisation-Tuist
+      # - name: Run Tests
+      #   run: |
+      #     set -o pipefail && NSUnbufferedIO=YES xcodebuild test \
+      #     -workspace TCA-Modularisation-Tuist.xcworkspace \
+      #     -scheme TCA-Modularisation-Tuist \
+      #     -destination "platform=iOS Simulator,name=iPhone 16,OS=18.5" 2>&1 | xcbeautify --renderer github-actions

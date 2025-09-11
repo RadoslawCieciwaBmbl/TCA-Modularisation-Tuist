@@ -29,6 +29,6 @@ jobs:
         run: |
           # Running tuist generate to propagate only target destinations / platforms
           tuist generate --no-open
-      - name: Build
+      - name: Building ${{ inputs.scheme }}
         run: |
           tuist build ${{ inputs.scheme }}

@@ -8,8 +8,11 @@ on:
   workflow_dispatch:
     inputs:
       scheme:
+        description: 'The scheme to build'
         required: false
         type: string
 jobs:
   build:
     uses: ./.github/workflows/reusable-tuist-build.yml
+    with:
+      scheme: ${{ github.event.inputs.scheme }}

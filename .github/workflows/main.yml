@@ -12,4 +12,6 @@ on:
         type: string
 jobs:
   build:
-    uses: ./.github/workflows/reusable-tuist-build.yml
+    uses: ./.github/workflows/reusable-tuist-test.yml
+    with:
+      scheme: ${{ github.event.inputs.scheme }}

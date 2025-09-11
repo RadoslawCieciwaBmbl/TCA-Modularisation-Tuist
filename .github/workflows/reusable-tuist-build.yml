@@ -1,17 +1,8 @@
-name: PR Pipeline
-run-name: ${{ github.actor }} runs main pipeline 🚀
+name: reusables/tuist-build
 on:
-  # pull_request:
-  #   branches:
-  #     - main
-  # push:
-  #   branches:
-  #     - main
-  workflow_dispatch:
-env:
-  DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
+  workflow_call:
 jobs:
-  PR-Pipeline:
+  build:
     runs-on: macos-15
     env:
       TUIST_TEST_PLATFORM: iOS
@@ -23,8 +14,16 @@ jobs:
           install_args: "tuist"
           cache: true
           log_level: debug
-      - name: Check Xcode version
-        run: /usr/bin/xcodebuild -version
-      - name: Tests
+      - name: Cleanup
         run: |
-          ./scripts/ci/build.sh
+          tuist clean
+      - name: Tuist Install
+        run: |
+          tuist install
+      - name: Tuist Generate
+        run: |
+          # Running tuist generate to propagate only target destinations / platforms
+          tuist generate --no-open
+      - name: Build
+        run: |
+          tuist build ${{ inputs.scheme }}

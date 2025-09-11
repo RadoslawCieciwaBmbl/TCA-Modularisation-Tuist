@@ -1,0 +1,15 @@
+name: CI
+run-name: ${{ github.actor }} runs main pipeline 🚀
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      scheme:
+        required: false
+        type: string
+jobs:
+  build:
+    uses: ./.github/workflows/reusable-tuist-build.yml

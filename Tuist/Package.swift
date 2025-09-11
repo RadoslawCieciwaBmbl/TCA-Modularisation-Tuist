@@ -13,11 +13,13 @@ import PackageDescription
 #endif
 
 let package = Package(
-    name: "TCA-Modularisation-Tuist",
+    name: "Dependencies",
+    // This only defines minimum deployment target for, but does not support platform destination
+    // platforms: [.iOS(.v17)],
     dependencies: [
-        // Add your own dependencies here:
-        // .package(url: "https://github.com/Alamofire/Alamofire", from: "5.0.0"),
-        // You can read more about dependencies here: https://docs.tuist.io/documentation/tuist/dependencies
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", from: "1.22.0"),
+       .package(
+           url: "https://github.com/pointfreeco/swift-composable-architecture.git",
+           from: "1.22.0"
+       ),
     ]
 )

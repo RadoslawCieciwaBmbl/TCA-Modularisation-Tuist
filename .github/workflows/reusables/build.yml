@@ -17,6 +17,4 @@ jobs:
           log_level: debug
       - name: Build
         run: |
-          pwd
-          ls
-          /scripts/ci/build.sh
+          tuist build

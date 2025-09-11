@@ -27,6 +27,4 @@ jobs:
         run: /usr/bin/xcodebuild -version
       - name: Tests
         run: |
-          pwd
-          ls
           ./scripts/ci/build.sh

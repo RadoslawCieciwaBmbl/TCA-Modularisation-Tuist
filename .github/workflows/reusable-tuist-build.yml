@@ -1,11 +1,6 @@
 name: reusables/tuist-build
 on:
   workflow_call:
-  workflow_dispatch:
-  inputs:
-    scheme:
-      required: false
-      type: string
 jobs:
   build:
     runs-on: macos-15

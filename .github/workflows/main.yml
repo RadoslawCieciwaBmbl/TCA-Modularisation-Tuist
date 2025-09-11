@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       scheme:
+        description: 'The scheme to build'
         required: false
         type: string
 jobs:

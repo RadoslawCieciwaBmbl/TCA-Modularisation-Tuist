@@ -7,4 +7,4 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    uses: ./.github/workflows/reusables/tuist-build.yml
+    uses: .github/workflows/reusable-tuist-build.yml

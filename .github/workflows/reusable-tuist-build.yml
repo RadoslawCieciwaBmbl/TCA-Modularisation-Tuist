@@ -14,9 +14,16 @@ jobs:
           install_args: "tuist"
           cache: true
           log_level: debug
+      - name: Cleanup
+        run: |
+          tuist clean
       - name: Tuist Install
         run: |
           tuist install
+      - name: Tuist Generate
+        run: |
+          # Running tuist generate to propagate only target destinations / platforms
+          tuist generate --no-open
       - name: Build
         run: |
           tuist build

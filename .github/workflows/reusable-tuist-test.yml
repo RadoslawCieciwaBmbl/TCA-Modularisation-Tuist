@@ -1,6 +1,11 @@
-name: reusables/tuist-build
+name: reusables/tuist-test
 on:
   workflow_call:
+    inputs:
+      scheme:
+        description: 'The scheme to build'
+        required: false
+        type: string
 jobs:
   build:
     runs-on: macos-15

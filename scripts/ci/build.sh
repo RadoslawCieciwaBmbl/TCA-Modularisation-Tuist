@@ -1,9 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-# Set Xcode version if needed (uncomment if running locally and want to match CI)
-# export DEVELOPER_DIR="/Applications/Xcode_16.4.app/Contents/Developer"
-
+- name: Check Xcode version
+        run: /usr/bin/xcodebuild -version
+		
 echo "==> Installing dependencies with tuist..."
 tuist install
 

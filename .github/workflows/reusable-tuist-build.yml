@@ -2,7 +2,7 @@ name: reusables/tuist-build
 on:
   workflow_call:
   workflow_dispatch:
-  input:
+  inputs:
     scheme:
       required: false
       type: string

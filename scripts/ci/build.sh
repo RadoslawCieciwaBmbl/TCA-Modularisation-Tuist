@@ -1,9 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-- name: Check Xcode version
-        run: /usr/bin/xcodebuild -version
-		
+echo "==> Check Xcode version"
+/usr/bin/xcodebuild -version
+
 echo "==> Installing dependencies with tuist..."
 tuist install
 

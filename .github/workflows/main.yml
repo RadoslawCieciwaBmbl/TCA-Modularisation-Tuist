@@ -1,4 +1,5 @@
 name: CI
+run-name: ${{ github.actor }} runs main pipeline 🚀
 on:
   pull_request:
     branches: [ main ]

@@ -1,6 +1,10 @@
 name: reusables/tuist-build
 on:
   workflow_call:
+  input:
+    scheme:
+      required: false
+      type: string
 jobs:
   build:
     runs-on: macos-15
@@ -26,4 +30,4 @@ jobs:
           tuist generate --no-open
       - name: Build
         run: |
-          tuist build
+          tuist build ${{ inputs.scheme }}

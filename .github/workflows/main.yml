@@ -11,6 +11,9 @@ on:
         description: 'The scheme to build'
         required: false
         type: string
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
     uses: ./.github/workflows/reusable-tuist-test.yml

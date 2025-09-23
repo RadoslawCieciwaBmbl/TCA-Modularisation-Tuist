@@ -1,0 +1,21 @@
+import ProjectDescription
+import ProjectDescriptionHelpers
+
+let project = Project.module(
+    name: "{{ name }}",
+    targets: [
+        .main(
+            dependencies: [
+            ]
+        ),
+        .tests(
+            dependencies: [
+                .target(name: "{{ name }}"),
+            ]
+        ),
+        .contract(
+            dependencies: [
+            ]
+        ),
+    ]
+)

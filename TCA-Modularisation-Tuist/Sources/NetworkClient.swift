@@ -15,11 +15,11 @@ struct NetworkClient {
     }
 
     private let subject = PassthroughSubject<Int, Never>()
-    
+
     func getPublisher() -> AnyPublisher<Int, Never> {
         return subject.eraseToAnyPublisher()
     }
-    
+
     func simulate() {
         subject.send(Int.random(in: 0...1_000))
     }

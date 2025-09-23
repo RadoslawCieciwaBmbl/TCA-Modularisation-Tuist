@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-//struct NetworkExamplesView: View {
+// struct NetworkExamplesView: View {
 //    @State var networkValue: String = ""
 //    @State private var observers: Set<AnyCancellable> = .init()
 //    private let networkClient = NetworkClient()
@@ -31,7 +31,7 @@ import Combine
 //    func getValue() {
 //        self.networkClient.simulate()
 //    }
-//}
+// }
 
 struct NetworkExamplesView: View {
     @State var networkValue: String = ""

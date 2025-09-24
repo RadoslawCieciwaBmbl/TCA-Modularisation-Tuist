@@ -16,7 +16,6 @@ jobs:
             echo "The workflow run has completed."
             echo ${{ github.event.workflow.path }}
 
-
     #   - name: Export Workflow Trace
     #     uses: corentinmusard/otel-cicd-action@v1
     #     with:

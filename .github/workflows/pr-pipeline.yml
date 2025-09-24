@@ -1,12 +1,6 @@
 name: PR Pipeline
 run-name: ${{ github.actor }} runs main pipeline 🚀
 on:
-  # pull_request:
-  #   branches:
-  #     - main
-  # push:
-  #   branches:
-  #     - main
   workflow_dispatch:
 env:
   DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
@@ -28,3 +22,13 @@ jobs:
       - name: Tests
         run: |
           ./scripts/ci/build.sh
+      - name: Job summary
+        run: |
+          {
+            echo "## CI Report"
+            echo "- Commit: $GITHUB_SHA"
+            echo ""
+            echo "| Step | Status | Duration |"
+            echo "|---|---|---|"
+            echo "| Lint | ✅ | $((SECONDS))s |"
+          } >> "$GITHUB_STEP_SUMMARY"

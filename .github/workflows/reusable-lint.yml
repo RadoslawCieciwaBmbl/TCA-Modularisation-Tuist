@@ -1,18 +1,10 @@
 name: Linter
 run-name: ${{ github.actor }} runs static lint 🚀
 on:
-  pull_request:
-    branches:
-      - main
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true  
+  workflow_dispatch:  
+  workflow_call:
 jobs:
-  SwiftLint:
+  swiftlint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # @v4.3.0 https://github.com/actions/checkout

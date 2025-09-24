@@ -11,15 +11,15 @@ jobs:
     name: OpenTelemetry Export Trace
     runs-on: ubuntu-latest
     steps:
-        - name: Status
-          run: |
-            echo "The workflow run has completed."
-            echo ${{ github.event.workflow.path }}
+      - name: Status
+        run: |
+          echo "The workflow run has completed."
+          echo ${{ github.event.workflow.path }}
 
-    #   - name: Export Workflow Trace
-    #     uses: corentinmusard/otel-cicd-action@v1
-    #     with:
-    #       otlpEndpoint: ${{ secrets.DASH0_OTLP_ENDPOINT }}
-    #       otlpHeaders: ${{ secrets.DASH0_OTLP_HEADERS }}
-    #       githubToken: ${{ secrets.GITHUB_TOKEN }}
-    #       runId: ${{ github.event.workflow_run.id }}
+      - name: Export Workflow Trace
+        uses: corentinmusard/otel-cicd-action@v1
+        with:
+          otlpEndpoint: ${{ secrets.GRAFANA_OTEL_EXPORTER_OTLP_ENDPOINT }}
+          otlpHeaders: ${{ secrets.GRAFANA_OTEL_EXPORTER_OTLP_HEADERS }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          runId: ${{ github.event.workflow_run.id }}

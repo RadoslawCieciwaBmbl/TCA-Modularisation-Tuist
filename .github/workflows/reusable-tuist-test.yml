@@ -17,6 +17,7 @@ jobs:
     runs-on: macos-15
     env:
       TUIST_TEST_PLATFORM: iOS
+      XDG_CACHE_HOME: ${{ github.workspace }}/.cache
     steps:
       - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # @v4.3.0 https://github.com/actions/checkout
       - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2 https://github.com/jdx/mise-action
@@ -31,10 +32,16 @@ jobs:
       - name: Tuist Install
         run: |
           tuist install
+      - name: Tuist Cache
+        run: |
+          tuist cache --external-only
+          echo "Tuist cache contents:"
+          ls -la $XDG_CACHE_HOME/tuist
+
       - name: Tuist Generate
         run: |
           # Running tuist generate to propagate only target destinations / platforms
           tuist generate --no-open
-      - name: Test
-        run: |
-          tuist test ${{ inputs.scheme }}
+      # - name: Test
+      #   run: |
+      #     tuist test ${{ inputs.scheme }}

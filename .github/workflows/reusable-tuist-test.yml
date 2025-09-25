@@ -28,9 +28,9 @@ jobs:
           cache: true
           log_level: debug
 
-      - name: Cleanup
-        run: |
-          tuist clean
+      # - name: Cleanup
+      #   run: |
+      #     tuist clean
 
       - name: Tuist Install
         run: |

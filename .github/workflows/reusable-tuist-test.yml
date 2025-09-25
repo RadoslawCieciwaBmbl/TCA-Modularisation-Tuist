@@ -45,7 +45,7 @@ jobs:
       - name: Tuist Cache
         run: |
           echo "Tuist cache contents:"
-          ls -1 $XDG_CACHE_HOME/tuist/Binaries | xargs -I{} sh -c "echo {}; ls $XDG_CACHE_HOME/tuist/Binaries/{} | grep -E 'framework|bundle';"
+          ls -1 $XDG_CACHE_HOME/tuist/Binaries | xargs -I{} sh -c "echo {}; ls $XDG_CACHE_HOME/tuist/Binaries/{} | grep framework;"
           # ls -la $XDG_CACHE_HOME/tuist/Binaries
           echo "Check generated caches:"
           tuist hash cache

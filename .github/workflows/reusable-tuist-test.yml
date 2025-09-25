@@ -39,7 +39,7 @@ jobs:
       - uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0 https://github.com/actions/cache
         id: tuist-cache
         with:
-          path: $XDG_CACHE_HOME/tuist/Binaries
+          path: ${{ env.XDG_CACHE_HOME }}/tuist/Binaries
           key: ${{ runner.os }}-spm-${{ hashFiles('Tuist/Package.resolved') }}
 
       - name: Tuist Cache
@@ -51,7 +51,7 @@ jobs:
       - uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0 https://github.com/actions/cache
         if: steps.tuist-cache.outputs.cache-hit != 'true'
         with:
-          path: $XDG_CACHE_HOME/tuist/Binaries
+          path: ${{ env.XDG_CACHE_HOME }}/tuist/Binaries
           key: ${{ runner.os }}-spm-${{ hashFiles('Tuist/Package.resolved') }}
 
       - name: Tuist Generate

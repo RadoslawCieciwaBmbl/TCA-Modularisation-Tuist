@@ -49,7 +49,6 @@ jobs:
           # ls -la $XDG_CACHE_HOME/tuist/Binaries
           echo "Check generated caches:"
           tuist hash cache
-
           # tuist cache --external-only
           # echo "Tuist cache contents:"
           # ls -la $XDG_CACHE_HOME/tuist/Binaries

@@ -44,7 +44,9 @@ jobs:
 
       - name: Tuist Cache
         run: |
-          tuist cache --external-only
+          echo "Tuist cache contents:"
+          ls -la $XDG_CACHE_HOME/tuist/Binaries
+          XDG_CACHE_HOME=$XDG_CACHE_HOME tuist cache --external-only
           echo "Tuist cache contents:"
           ls -la $XDG_CACHE_HOME/tuist/Binaries
 

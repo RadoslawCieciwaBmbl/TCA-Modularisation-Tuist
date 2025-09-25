@@ -19,7 +19,7 @@ jobs:
       - name: Export Workflow Trace
         uses: corentinmusard/otel-cicd-action@769ccb38830ff3d1600ffb2f35ba9da6724e6b3e # v2.2.4 https://github.com/corentinmusard/otel-cicd-action
         with:
-          otlpEndpoint: ${{ secrets.GRAFANA_OTEL_EXPORTER_OTLP_ENDPOINT }}
+          otlpEndpoint: "https://otlp-gateway-prod-eu-west-2.grafana.net/otlp"
           otlpHeaders: ${{ secrets.GRAFANA_OTEL_EXPORTER_OTLP_HEADERS }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           runId: ${{ github.event.workflow_run.id }}

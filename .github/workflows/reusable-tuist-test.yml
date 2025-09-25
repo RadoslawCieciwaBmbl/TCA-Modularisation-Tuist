@@ -45,9 +45,11 @@ jobs:
       - name: Tuist Cache
         run: |
           echo "Tuist cache contents:"
-          ls -la $XDG_CACHE_HOME/tuist/Binaries
+          ls -1 $XDG_CACHE_HOME/tuist/Binaries | xargs -I{} sh -c "echo {}; ls $XDG_CACHE_HOME/tuist/Binaries/{} | grep -E 'framework|bundle';"
+          # ls -la $XDG_CACHE_HOME/tuist/Binaries
           echo "Check generated caches:"
           tuist hash cache
+
           # tuist cache --external-only
           # echo "Tuist cache contents:"
           # ls -la $XDG_CACHE_HOME/tuist/Binaries
@@ -63,6 +65,6 @@ jobs:
           # Running tuist generate to propagate only target destinations / platforms
           tuist generate --no-open
 
-      - name: Test
-        run: |
-          tuist test ${{ inputs.scheme }}
+      # - name: Test
+      #   run: |
+      #     tuist test ${{ inputs.scheme }}

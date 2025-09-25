@@ -63,6 +63,6 @@ jobs:
           # Running tuist generate to propagate only target destinations / platforms
           tuist generate --no-open
 
-      # - name: Test
-      #   run: |
-      #     tuist test ${{ inputs.scheme }}
+      - name: Test
+        run: |
+          tuist test ${{ inputs.scheme }}

@@ -17,7 +17,7 @@ jobs:
     runs-on: macos-15
     env:
       TUIST_TEST_PLATFORM: iOS
-      XDG_CACHE_HOME: ${{ github.workspace }}/.cache
+      # XDG_CACHE_HOME: ${{ github.workspace }}/.cache
     steps:
       - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # @v4.3.0 https://github.com/actions/checkout
 
@@ -36,28 +36,32 @@ jobs:
         run: |
           tuist install
 
+      - name: Env
+        run: |
+          echo "XDG_CACHE_HOME: $XDG_CACHE_HOME"
+
       - uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0 https://github.com/actions/cache
         id: tuist-cache
         with:
           path: ${{ env.XDG_CACHE_HOME }}/tuist/Binaries
           key: ${{ runner.os }}-spm-${{ hashFiles('Tuist/Package.resolved') }}
 
-      - name: Tuist Cache
+      - name: Tuist Cache Check
         run: |
           echo "Tuist cache contents:"
-          ls -1 $XDG_CACHE_HOME/tuist/Binaries | xargs -I{} sh -c "echo {}; ls $XDG_CACHE_HOME/tuist/Binaries/{} | grep framework;"
-          # ls -la $XDG_CACHE_HOME/tuist/Binaries
+          ls -1 $XDG_CACHE_HOME/tuist/Binaries
           echo "Check generated caches:"
           tuist hash cache
-          # tuist cache --external-only
-          # echo "Tuist cache contents:"
-          # ls -la $XDG_CACHE_HOME/tuist/Binaries
 
-      # - uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0 https://github.com/actions/cache
-      #   if: steps.tuist-cache.outputs.cache-hit != 'true'
-      #   with:
-      #     path: ${{ env.XDG_CACHE_HOME }}/tuist/Binaries
-      #     key: ${{ runner.os }}-spm-${{ hashFiles('Tuist/Package.resolved') }}
+      - name: Tuist Cache
+        run: |
+          tuist cache --external-only
+
+      - uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0 https://github.com/actions/cache
+        if: steps.tuist-cache.outputs.cache-hit != 'true'
+        with:
+          path: ${{ env.XDG_CACHE_HOME }}/tuist/Binaries
+          key: ${{ runner.os }}-spm-${{ hashFiles('Tuist/Package.resolved') }}
 
       - name: Tuist Generate
         run: |

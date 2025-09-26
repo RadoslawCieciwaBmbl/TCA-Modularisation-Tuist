@@ -50,7 +50,7 @@ jobs:
           tuist hash cache
 
       - name: Tuist Cache
-        if: steps.tuist-cache.outputs.cache-hit != 'true'
+        # if: steps.tuist-cache.outputs.cache-hit != 'true'
         run: |
           tuist cache --external-only
 
